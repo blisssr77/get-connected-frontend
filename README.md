@@ -6,9 +6,7 @@
 - User Authentication: Sign up and log in using JWT.
 - User Profiles: Students and freelancers can create and update their profiles.
 - Student-Freelancer Matching: Students can find and like freelancers.
-- Comments: Users can leave comments on profiles.
 - Liked Profiles: Users can view their liked freelancers and students.
-- File Upload: Users can upload profile pictures.
 
 
 ## Technologies
