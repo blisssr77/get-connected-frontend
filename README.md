@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+<h1 align="center">GetConnected Application</h1>
+<h4 align="center">Welcome to GetConneted App. GetConnected is a full-stack web application that connects students with freelancers for teaching and learning purposes. The platform allows students to create profiles, find freelancers based on their skills and interests, and manage their learning journey.<h4>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About the Application
+### Features
+- User Authentication: Sign up and log in using JWT.
+- User Profiles: Students and freelancers can create and update their profiles.
+- Student-Freelancer Matching: Students can find and like freelancers.
+- Comments: Users can leave comments on profiles.
+- Liked Profiles: Users can view their liked freelancers and students.
+- File Upload: Users can upload profile pictures.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Technologies
 
-### `npm start`
+### Frontend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Tailwind CSS
+- React Router
+- React Dom
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
 
-### `npm test`
+- Node.js
+- Express
+- MongoDB (Mongoose)
+- JWT for authentication
+- Multer for file uploads
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started (Heroku)
+[GetConnected app - click here to start](https://getconnected-frontend-2c20f9a1ff0e.herokuapp.com/)
 
-### `npm run build`
+1. Sign Up to get access to the application.
+2. Browse global students and freelancers to get connected.
+3. You can like any of people's profile and make your own list of it.
+4. Log out anytime to log out from the applicatioin in Account section.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
+If you have any suggestions or need a bug fix that would improve the application, please fork the repo and create a pull request.
+ - Fork the Project
+ - Create your Feature Branch
+ - Commit your Changes
+ - Push to the Branch
+ - Open a Pull Request
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contact
+- Email✅: Robin Chae, robinchae55@gmail.com
+- LinkedIn✅: www.linkedin.com/in/robinchae
+- Project Link✅: [https://github.com/blisssr77/get-connected-app.git](https://github.com/blisssr77/get-connected-app.git)
