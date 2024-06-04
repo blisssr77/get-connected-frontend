@@ -10,6 +10,7 @@ import StudentDetail from './components/Pages/StudentPages/StudentDetail';
 import LikedStudents from './components/Pages/StudentPages/LikedStudents'
 import Freelancers from './components/Pages/FreelancerPages/Freelancers';
 import FreelancerForm from './components/Pages/FreelancerPages/FreelancerForm';
+import FreelancerDetail from './components/Pages/FreelancerPages/FreelancerDetail';
 import LikedFreelancers from './components/Pages/FreelancerPages/LikedFreelancers';
 import RoleSelection from './components/Pages/RoleProfilePages/RoleSelection';
 import RoleProfile from './components/Pages/RoleProfilePages/RoleProfile';
@@ -495,14 +496,13 @@ function App() {
       }
     };
     
-
-    // Below is the code handles Student Comment----------------------------------------------------------------------------------------
+    // Below is the code handles all Comments ----------------------------------------------------------------------------------------
     const [comments, setComments] = useState([]);
 
-    // Get all comments for a specific student
-    const getCommentsByStudent = async (studentId) => {
+    // Get comments for a specific student or freelancer
+    const getComments = async (id, type) => {
         try {
-            const response = await fetch(`${URL}students/${studentId}`, {
+            const response = await fetch(`${URL}${type}/${id}/comments`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("authToken")}`
@@ -511,9 +511,9 @@ function App() {
 
             if (response.ok) {
                 const data = await response.json();
-                setComments(data.data);
+                setComments(data);
                 console.log("Comments fetched successfully.");
-                console.log(data.data);
+                console.log(data);
             } else {
                 console.log("Failed to fetch comments.");
             }
@@ -522,10 +522,10 @@ function App() {
         }
     };
 
-    // Create a new comment
-    const createComment = async (comment) => {
+    // Create a new comment for a student or freelancer
+    const createComment = async (comment, id, type) => {
         try {
-            const response = await fetch(`${URL}students`, {
+            const response = await fetch(`${URL}${type}/${id}/comments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -537,7 +537,7 @@ function App() {
             if (response.ok) {
                 console.log("Comment created successfully.");
                 const newComment = await response.json();
-                setComments([...comments, newComment.data]);
+                setComments([...comments, newComment]);
             } else {
                 console.log("Failed to create comment.");
             }
@@ -562,7 +562,7 @@ function App() {
                 console.log("Comment updated successfully.");
                 const updatedComment = await response.json();
                 setComments(comments.map(comment => 
-                    comment._id === commentId ? updatedComment.data : comment
+                    comment._id === commentId ? updatedComment : comment
                 ));
             } else {
                 console.log("Failed to update comment.");
@@ -600,6 +600,7 @@ function App() {
         getStudent();
         getFreelancer();
         getLikedStudents();
+        getComments();
       } else {
         setIsLoggedIn(false);
       }
@@ -613,7 +614,8 @@ function App() {
       getStudent, getFreelancer, createStudent, createFreelancer, updateStudent, updateFreelancer, deleteStudent, deleteFreelancer, 
       handleStudentLike, getLikedStudents, handleFreelancerLike, getLikedFreelancers, deleteLikedStudent, deleteLikedFreelancer,
       students, freelancers, likedStudents, likedFreelancers, getRoleProfileData,
-      isLoggedIn, handleLogin, handleSignUp, handleLogout, fetchUser 
+      comments, getComments, createComment, updateComment, deleteComment,
+      isLoggedIn, handleLogin, handleSignUp, handleLogout, fetchUser, user 
       }}>
       
       <div className='bg-gray-100 w-full h-screen' style={{background:'linear-gradient(#C6F6D5, #000000)'}}>
@@ -641,6 +643,7 @@ function App() {
           {/* Controls Freelancer */}
           <Route path="/freelancers" element={<Freelancers />} />
           <Route path='/freelancer-form' element={<FreelancerForm />} />
+          <Route path='/freelancers/:id' element={<FreelancerDetail />} />
           <Route path='/liked-freelancers' element={<LikedFreelancers />} />
         </Routes>
     </div>

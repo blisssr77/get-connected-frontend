@@ -2,19 +2,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppContext } from '../../../App';
 
-const StudentDetail = () => {
+const FreelancerDetail = () => {
     const { id } = useParams();
-    const { students, isLoggedIn, comments, getComments, createComment, updateComment, deleteComment, user } = useContext(AppContext);
-    const [student, setStudent] = useState(null);
+    const { freelancers, isLoggedIn, comments, getComments, createComment, updateComment, deleteComment, user } = useContext(AppContext);
+    const [freelancer, setFreelancer] = useState(null);
     const [newComment, setNewComment] = useState("");
     const [editCommentId, setEditCommentId] = useState(null);
     const [editCommentContent, setEditCommentContent] = useState("");
 
     useEffect(() => {
-        if (students && students.length > 0) {
-            const studentData = students.find((student) => student._id === id);
-            setStudent(studentData);
-            getComments(id, 'students');
+        if (freelancers && freelancers.length > 0) {
+            const freelancerData = freelancers.find((freelancer) => freelancer._id === id);
+            setFreelancer(freelancerData);
+            getComments(id, 'freelancers');
         }
     }, []);
 
@@ -25,7 +25,7 @@ const StudentDetail = () => {
             return;
         }
 
-        await createComment({ content: newComment }, id, 'students');
+        await createComment({ content: newComment }, id, 'freelancers');
         setNewComment("");
     };
 
@@ -63,22 +63,22 @@ const StudentDetail = () => {
     return (
         <div className="pt-28 min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto space-y-8">
-                {student && (
+                {freelancer && (
                     <>
-                        <h2 className="text-3xl font-extrabold text-gray-900 text-center">{student.fullname}</h2>
-                        {student.photo && (
+                        <h2 className="text-3xl font-extrabold text-gray-900 text-center">{freelancer.fullname}</h2>
+                        {freelancer.photo && (
                             <img
-                                src={student.photo}
-                                alt={student.fullname}
+                                src={freelancer.photo}
+                                alt={freelancer.fullname}
                                 className="w-32 h-32 rounded-full mx-auto mb-4"
                             />
                         )}
                         <div className="bg-white p-6 rounded-lg shadow-lg">
-                            <p className="text-gray-700"><strong>Age:</strong> {student.age}</p>
-                            <p className="text-gray-700"><strong>Career:</strong> {student.career}</p>
-                            <p className="text-gray-700"><strong>Hobby:</strong> {student.hobby}</p>
-                            <p className="text-gray-700"><strong>Description:</strong> {student.description}</p>
-                            <p className="text-gray-700"><strong>Location:</strong> {student.location}</p>
+                            <p className="text-gray-700"><strong>Age:</strong> {freelancer.age}</p>
+                            <p className="text-gray-700"><strong>Career:</strong> {freelancer.career}</p>
+                            <p className="text-gray-700"><strong>Hobby:</strong> {freelancer.hobby}</p>
+                            <p className="text-gray-700"><strong>Description:</strong> {freelancer.description}</p>
+                            <p className="text-gray-700"><strong>Location:</strong> {freelancer.location}</p>
                         </div>
                     </>
                 )}
@@ -161,4 +161,4 @@ const StudentDetail = () => {
     );
 };
 
-export default StudentDetail;
+export default FreelancerDetail;
