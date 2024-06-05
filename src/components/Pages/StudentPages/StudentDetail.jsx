@@ -93,7 +93,7 @@ const StudentDetail = () => {
                                     <p className="text-gray-800">{comment.content}</p>
                                     <p className="text-gray-500 text-sm">- {comment.User?.fullname || 'Unknown User'}</p>
                                     {/* {isLoggedIn && comment.User?._id === user?._id && ( */}
-                                    {isLoggedIn && (
+                                    {isLoggedIn && comment.User?._id === user?._id &&(
                                         <div className="flex justify-end space-x-2 mt-2">
                                             <button
                                                 onClick={() => handleEditClick(comment)}

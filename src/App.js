@@ -17,17 +17,41 @@ import RoleProfile from './components/Pages/RoleProfilePages/RoleProfile';
 import RoleProfileDetail from './components/Pages/RoleProfilePages/RoleProfileDetail';
 import {  Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState, createContext } from 'react';
+import axios from 'axios';
 
 export const AppContext = createContext(null);
 
 
 function App() {
-
-    // Below code handles login and signup state--------------------------------------------------------------------
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("authToken"))
+    const [user, setUser] = useState(null);
+    const [students, setStudents] = useState(null);
+    const [freelancers, setFreelancers] = useState(null);
+    const [likedStudents, setLikedStudents] = useState([]);
+    const [likedFreelancers, setLikedFreelancers] = useState([]);
+    const [comments, setComments] = useState([]);
+
+    // Below code handles login and signup state-----------------------------------------------------------------------------------
     const navigate = useNavigate()
     const URL = process.env.REACT_APP_URL
-  
+
+    const fetchUser = async (id) => {
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        const response = await fetch(URL + `user/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "authorization": `Bearer ${token}`
+          }
+        });
+        const data = await response.json();
+        setUser(data.data);
+      } else {
+        console.log("no token");
+      }
+    };
+
     const handleLogin = async (user) => {
       const response = await fetch(URL + "auth/login", {
         method: "POST",
@@ -44,6 +68,7 @@ function App() {
       setIsLoggedIn(true);
       console.log("User logged in");
       console.log(data);
+      console.log(user)
       navigate(`/`);
     };
   
@@ -66,28 +91,8 @@ function App() {
       setIsLoggedIn(false);
       navigate("/");
     };
-  
-    const [user, setUser] = useState(null);
-  
-    const fetchUser = async (id) => {
-      const token = localStorage.getItem("authToken");
-      if (token) {
-        const response = await fetch(URL + `user/${id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "authorization": `Bearer ${token}`
-          }
-        });
-        const data = await response.json();
-        setUser(data.data);
-      } else {
-        console.log("no token");
-      }
-    };
     
     // Below is the code handles student state--------------------------------------------------------------------------
-    const [students, setStudents] = useState(null);
     const getStudent = async () => {
       try {
           if (!isLoggedIn) {
@@ -215,7 +220,6 @@ function App() {
   };
     
     // Below is the code handles freelancer state--------------------------------------------------------------------------
-    const [freelancers, setFreelancers] = useState(null);
     const getFreelancer = async () => {
       try {
           if (!isLoggedIn) {
@@ -315,7 +319,6 @@ function App() {
     }
 
     // Below is the code handles STUDENT LIKE----------------------------------------------------------------------------------------------
-    const [likedStudents, setLikedStudents] = useState([]);
 
     const getLikedStudents = async () => {
       try {
@@ -406,7 +409,6 @@ function App() {
     };
 
     // Below is the code handles Freelancer LIKE---------------------------------------------------------------------------------------
-    const [likedFreelancers, setLikedFreelancers] = useState([]);
 
     const getLikedFreelancers = async () => {
       try {
@@ -497,7 +499,6 @@ function App() {
     };
     
     // Below is the code handles all Comments ----------------------------------------------------------------------------------------
-    const [comments, setComments] = useState([]);
 
     // Get comments for a specific student or freelancer
     const getComments = async (id, type) => {
