@@ -92,7 +92,7 @@ const RoleProfile = () => {
     };
 
     const loading = () => {
-        return <h1 className="text-center text-2xl font-bold">No profiles found.</h1>;
+        return <h1 className="text-center text-2xl font-bold"></h1>;
     };
 
     return (

@@ -15,9 +15,9 @@ import LikedFreelancers from './components/Pages/FreelancerPages/LikedFreelancer
 import RoleSelection from './components/Pages/RoleProfilePages/RoleSelection';
 import RoleProfile from './components/Pages/RoleProfilePages/RoleProfile';
 import RoleProfileDetail from './components/Pages/RoleProfilePages/RoleProfileDetail';
+import Footer from './components/Navbar/Footer/Footer';
 import {  Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState, createContext } from 'react';
-import axios from 'axios';
 
 export const AppContext = createContext(null);
 
@@ -647,6 +647,9 @@ function App() {
           <Route path='/freelancers/:id' element={<FreelancerDetail />} />
           <Route path='/liked-freelancers' element={<LikedFreelancers />} />
         </Routes>
+
+        <Footer />
+
     </div>
   </AppContext.Provider>
 
